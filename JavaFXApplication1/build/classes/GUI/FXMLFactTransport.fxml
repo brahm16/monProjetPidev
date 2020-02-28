@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="783.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLFactTransportController">
+   <children>
+      <BorderPane fx:id="b1" layoutY="-2.0" prefHeight="442.0" prefWidth="781.0" style="-fx-background-color: #FFFFFF;">
+         <center>
+            <AnchorPane prefHeight="442.0" prefWidth="631.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="table1" layoutX="136.0" layoutY="138.0" prefHeight="173.0" prefWidth="520.0">
+                     <columns>
+                        <TableColumn fx:id="idd" prefWidth="69.0" text="id" />
+                        <TableColumn fx:id="deliv_ref" prefWidth="151.0" text="delivery_reference" />
+                        <TableColumn fx:id="fact_ref" prefWidth="126.0" text="facture_reference" />
+                        <TableColumn fx:id="etat" prefWidth="67.0" text="etat" />
+                        <TableColumn fx:id="dated" prefWidth="106.0" text="Datedelivery" />
+                     </columns>
+                     <opaqueInsets>
+                        <Insets right="20.0" top="20.0" />
+                     </opaqueInsets>
+                  </TableView>
+                  <Button fx:id="env" layoutX="188.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#envoyer" prefHeight="71.0" prefWidth="184.0" style="-fx-background-color: linear-gradient(to right, #cc0000 0%, #800000 100%); -fx-text-fill: #f0f0f0f0; -fx-border-radius: 10;" text="Trier croissant" />
+                  <Button fx:id="env1" layoutX="421.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#sort2" prefHeight="71.0" prefWidth="184.0" style="-fx-background-color: linear-gradient(to right, #cc0000 0%, #800000 100%); -fx-text-fill: #f0f0f0f0; -fx-border-radius: 10;" text="Trier decroissant" />
+                  <Pane layoutX="-12.0" prefHeight="116.0" prefWidth="791.0" style="-fx-background-color: linear-gradient(to bottom, #cc0000 0%, #800000 100%); -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 5 );">
+                     <children>
+                        <Text fill="WHITE" layoutX="176.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 5 );" text="les Factures de Transports" wrappingWidth="274.65234375">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

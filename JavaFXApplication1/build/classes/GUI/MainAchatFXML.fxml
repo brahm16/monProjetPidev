@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import com.jfoenix.controls.*?>
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="1106.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainAchatFXMLController">
+    <stylesheets>
+        <URL value="@mainachatfxml.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="tableAchat" layoutX="29.0" layoutY="88.0" prefHeight="271.0" prefWidth="526.0">
+        <columns>
+          <TableColumn fx:id="achat_client_name" prefWidth="62.0" text="Client" />
+            <TableColumn fx:id="achat_client_type" prefWidth="99.0" text="Type de client" />
+            <TableColumn fx:id="achat_client_address" prefWidth="128.0" text="Address" />
+            <TableColumn fx:id="col_edit" minWidth="5.0" prefWidth="57.0" />
+            <TableColumn fx:id="col_delete" prefWidth="53.0" />
+            <TableColumn fx:id="col_details" minWidth="0.0" prefWidth="50.0" />
+            <TableColumn fx:id="col_valider" minWidth="0.0" prefWidth="75.0" />
+        </columns>
+      </TableView>
+      <JFXTextField fx:id="filterField" layoutX="41.0" layoutY="44.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: white;" />
+      <BarChart fx:id="barChart" layoutX="614.0" layoutY="20.0" prefHeight="400.0" prefWidth="421.0" title="Les produits plus vendu">
+        <xAxis>
+          <CategoryAxis label="Nom de produit" side="BOTTOM" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" label="Quantite" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

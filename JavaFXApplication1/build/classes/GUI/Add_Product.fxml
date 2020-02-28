@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="add_form" prefHeight="568.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Add_ProductController">
+   <children>
+      <TextField fx:id="jname" layoutX="233.0" layoutY="41.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="jtype" layoutX="233.0" layoutY="92.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="jreference" layoutX="233.0" layoutY="142.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="jmarque" layoutX="234.0" layoutY="198.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="jpriceHT" layoutX="236.0" layoutY="255.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="jpriceTTC" layoutX="233.0" layoutY="315.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="jWeight" layoutX="239.0" layoutY="428.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="jTVA" layoutX="239.0" layoutY="374.0" prefHeight="25.0" prefWidth="210.0" />
+      <Label layoutX="99.0" layoutY="44.0" prefHeight="17.0" prefWidth="67.0" text="Name : " />
+      <Label layoutX="108.0" layoutY="430.0" prefHeight="17.0" prefWidth="67.0" text="Weight :" />
+      <Label layoutX="107.0" layoutY="378.0" prefHeight="17.0" prefWidth="67.0" text="TVA :" />
+      <Label layoutX="106.0" layoutY="317.0" prefHeight="17.0" prefWidth="67.0" text="PriceTTC :" />
+      <Label layoutX="106.0" layoutY="260.0" prefHeight="17.0" prefWidth="67.0" text="PriceHT :" />
+      <Label layoutX="106.0" layoutY="205.0" prefHeight="17.0" prefWidth="67.0" text="Marque :" />
+      <Label layoutX="103.0" layoutY="145.0" prefHeight="17.0" prefWidth="67.0" text="Reference :" />
+      <Label layoutX="100.0" layoutY="95.0" prefHeight="17.0" prefWidth="67.0" text="Type :" />
+      <Button fx:id="Add_btn" layoutX="142.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#Add_Product" prefHeight="32.0" prefWidth="135.0" text="Add Product" textFill="#030303" />
+      <Button fx:id="reset" layoutX="308.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#Reset" prefHeight="32.0" prefWidth="148.0" text="Reset" />
+      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="326.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,197 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Service;
+
+import Connexion.DataSource;
+import Entity.Achat;
+import Entity.Fournisseur;
+import Entity.Product;
+import Entity.ProductAchat;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+/**
+ *
+ * @author Ibrahim
+ */
+public class ProductAchatService implements IService<ProductAchat> {
+    private Connection cnx;
+    private Statement stmt;
+    private PreparedStatement pst;
+    private ResultSet res;
+    private List<ProductAchat> productAchats;
+    
+    public ProductAchatService(){
+        this.cnx = DataSource.getInstance().getCon();
+        productAchats=this.displayAll();
+
+    }
+
+    @Override
+    public boolean insert(ProductAchat t) {
+String sql = "insert into product_achat (quantite,unité,prixTTC,priXHT,id_product,id_achat) values (?,?,?,?,?,?)";
+        try {
+            pst = cnx.prepareCall(sql);
+            pst.setFloat(1, t.getQuantite());
+            pst.setString(2, t.getUnite());
+            float prixTTC=t.getQuantite()*t.getProduct();
+            float prixHT=t.getQuantite()*t.getProduct();
+            pst.setFloat(3,1234.3f);
+            pst.setFloat(4,1258.6f);
+            pst.setInt(5, t.getProduct());
+            pst.setInt(6, t.getAchat());
+
+            pst.executeUpdate();
+            System.out.println("product achat added successfully");
+
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }     }
+
+    @Override
+    public boolean update(ProductAchat t) {
+String sql = "update product_achat set  unité= ? , quantite= ? , prixTTC= ? , prixHT = ?  where id_achat= ?";
+        try {
+            float prixTTC=t.getQuantite()*t.getProduct();
+            float prixHT=t.getQuantite()*t.getProduct();
+            pst = cnx.prepareCall(sql);
+            pst.setString(1, t.getUnite());
+            pst.setFloat(2, t.getQuantite());
+            pst.setFloat(3, prixTTC);
+            pst.setFloat(4, prixHT);
+            pst.setInt(5, t.getId_product_achat());
+
+            pst.executeUpdate();
+            System.out.println("product achat updated");
+            return true;
+        } catch (SQLException ex) {
+            
+            return false;
+        }    }
+
+    
+    public boolean delete(int id) {
+String sql="delete from product_achat where id_product_achat= ? ";
+				
+		try {
+                    pst=cnx.prepareStatement(sql);
+                    pst.setInt(1, id);
+                    pst.execute();
+                    System.out.println("Product achat deleted");
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+			return false;
+		}    }
+    public boolean deleteByIdProduct(int id_product,int id_achat){
+        String sql="delete from product_achat where id_product= ? and id_achat= ? ";
+				
+		try {
+                    pst=cnx.prepareStatement(sql);
+                    pst.setInt(1, id_product);
+                    pst.setInt(2, id_achat);
+
+                    pst.execute();
+                    System.out.println("Product achat deleted");
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+			return false;
+		} 
+    }
+
+    @Override
+    public List<ProductAchat> displayAll() {
+        String sql="Select* from product_achat";
+       
+        ProductService productService =new ProductService();
+        AchatService achatService =new AchatService();
+        
+        List<ProductAchat> list=new ArrayList<>();
+        Product product=null;
+        Achat achat=null;
+        try {
+            stmt=cnx.createStatement();
+            res=stmt.executeQuery(sql);
+            
+            while(res.next()){
+              //  product=productService.findById(res.getInt("id_product"));
+              //  achat = achatService.findById(res.getInt("id_achat"));
+                list.add(new ProductAchat(res.getInt("id_product_achat"),res.getFloat("quantite"),res.getString("unité"),res.getFloat("prixTTC"),res.getFloat("prixHT"),res.getInt("id_product"),res.getInt("id_achat")));
+            }
+            return list;
+        } catch (SQLException ex) {
+             System.out.println(ex.toString());
+        }
+        return list; 
+     }
+     public List<ProductAchat> listProductAchats(){
+         return productAchats.stream().distinct().collect(Collectors.toList());
+         
+     }
+     public List<ProductAchat> displayProductAchat(int id){
+           String sql="Select* from product_achat where id_achat="+id;
+       
+       
+   
+        List<ProductAchat> list=new ArrayList<>();
+        Product product=null;
+        Achat achat=null;
+        try {
+            stmt=cnx.createStatement();
+            res=stmt.executeQuery(sql);
+            
+            while(res.next()){
+              //  product=productService.findById(res.getInt("id_product"));
+              //  achat = achatService.findById(res.getInt("id_achat"));
+                list.add(new ProductAchat(res.getInt("id_product_achat"),res.getFloat("quantite"),res.getString("unité"),res.getFloat("prixTTC"),res.getFloat("prixHT"),res.getInt("id_product"),res.getInt("id_achat")));
+            }
+            return list;
+        } catch (SQLException ex) {
+             System.out.println(ex.toString());
+        }
+        return list; 
+         
+     }
+
+    @Override
+    public boolean delete(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ResultSet display(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ResultSet display(int number) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ResultSet display(String pass, String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+
+  
+    
+    
+}
